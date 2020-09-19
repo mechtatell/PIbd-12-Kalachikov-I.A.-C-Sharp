@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace Laboratory
 {
@@ -12,8 +9,8 @@ namespace Laboratory
         private int frameWidth;
         private int frameHeight;
 
-        private readonly int carWidth = 200;
-        private readonly int carHeight = 100;
+        private readonly int tankerWidth = 200;
+        private readonly int tankerHeight = 100;
 
         public int MaxSpeed { private set; get; }
         public float Weight { private set; get; }
@@ -40,15 +37,15 @@ namespace Laboratory
         {
             this.frameHeight = frameHeight;
             this.frameWidth = frameWidth;
-            if (posX >= 0 && posX + carWidth < frameWidth &&
-                posY >= 0 && posY + carHeight < frameHeight)
+            if (posX >= 0 && posX + tankerWidth < frameWidth &&
+                posY >= 0 && posY + tankerHeight < frameHeight)
             {
                 this.posX = posX;
                 this.posY = posY;
             }
         }
 
-        public void MoveCar(Direction direction)
+        public void MoveTanker(Direction direction)
         {
             float step = MaxSpeed * 100 / Weight;
             switch (direction)
@@ -60,13 +57,13 @@ namespace Laboratory
                     }
                     break;
                 case Direction.Right:
-                    if (posX + step < frameWidth - carWidth)
+                    if (posX + step < frameWidth - tankerWidth)
                     {
                         posX += step;
                     }
                     break;
                 case Direction.Down:
-                    if (posY + step < frameHeight - carHeight)
+                    if (posY + step < frameHeight - tankerHeight)
                     {
                         posY += step;
                     }
@@ -87,18 +84,18 @@ namespace Laboratory
             //Бак
             if (HasTank)
             {
-                g.FillRectangle(brushes[2], posX + 5, posY + 5, carWidth - 85, carHeight - 35);
-                g.FillEllipse(brushes[2], posX, posY + 5, 10, carHeight - 35);
-                g.FillEllipse(brushes[2], posX + 115, posY + 5, 10, carHeight - 35);
+                g.FillRectangle(brushes[2], posX + 5, posY + 5, tankerWidth - 85, tankerHeight - 35);
+                g.FillEllipse(brushes[2], posX, posY + 5, 10, tankerHeight - 35);
+                g.FillEllipse(brushes[2], posX + 115, posY + 5, 10, tankerHeight - 35);
             }
 
             //Кузов
-            g.DrawRectangle(new Pen(Color.Black), posX + 134, posY + 4, carWidth - 153, carHeight - 33);
-            g.DrawRectangle(new Pen(Color.Black), posX + 134, posY + 29, carWidth - 133, carHeight - 58);
-            g.FillRectangle(brushes[1], posX + 135, posY + 5, carWidth - 155, carHeight - 35);
-            g.FillRectangle(new SolidBrush(Color.Blue), posX + 140, posY + 10, carWidth - 165, carHeight - 80);
-            g.FillRectangle(brushes[1], posX + 135, posY + 30, carWidth - 135, carHeight - 60);
-            g.FillRectangle(brushes[3], posX + 10, posY + 55, carWidth - 20, 20);
+            g.DrawRectangle(new Pen(Color.Black), posX + 134, posY + 4, tankerWidth - 153, tankerHeight - 33);
+            g.DrawRectangle(new Pen(Color.Black), posX + 134, posY + 29, tankerWidth - 133, tankerHeight - 58);
+            g.FillRectangle(brushes[1], posX + 135, posY + 5, tankerWidth - 155, tankerHeight - 35);
+            g.FillRectangle(new SolidBrush(Color.Blue), posX + 140, posY + 10, tankerWidth - 165, tankerHeight - 80);
+            g.FillRectangle(brushes[1], posX + 135, posY + 30, tankerWidth - 135, tankerHeight - 60);
+            g.FillRectangle(brushes[3], posX + 10, posY + 55, tankerWidth - 20, 20);
 
             //Колеса
             g.FillEllipse(brushes[0], posX + 20, posY + 60, 40, 40);
@@ -127,12 +124,12 @@ namespace Laboratory
             //Полосы
             if (HasStrip)
             {
-                g.FillRectangle(brushes[2], posX + 140, posY + 45, carWidth - 150, 5);
+                g.FillRectangle(brushes[2], posX + 140, posY + 45, tankerWidth - 150, 5);
 
                 if (HasTank)
                 {
-                    g.FillRectangle(brushes[1], posX + 10, posY + 25, carWidth - 95, 5);
-                    g.FillRectangle(brushes[1], posX + 10, posY + 35, carWidth - 95, 5);
+                    g.FillRectangle(brushes[1], posX + 10, posY + 25, tankerWidth - 95, 5);
+                    g.FillRectangle(brushes[1], posX + 10, posY + 35, tankerWidth - 95, 5);
                 }
             }
 
