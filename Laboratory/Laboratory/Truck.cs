@@ -4,8 +4,8 @@ namespace Laboratory
 {
     class Truck : Vehicle
     {
-        protected readonly int carWidth = 200;
-        protected readonly int carHeight = 100;
+        protected readonly int truckWidth = 200;
+        protected readonly int truckHeight = 100;
 
         public Truck(int maxSpeed, float weight, Color mainColor)
         {
@@ -14,13 +14,13 @@ namespace Laboratory
             MainColor = mainColor;
         }
 
-        protected Truck(int maxSpeed, float weight, Color mainColor, int carWidth, int carHeight)
+        protected Truck(int maxSpeed, float weight, Color mainColor, int truckWidth, int truckHeight)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
-            this.carWidth = carWidth;
-            this.carHeight = carHeight;
+            this.truckWidth = truckWidth;
+            this.truckHeight = truckHeight;
         }
 
         public override void Render(Graphics g)
@@ -28,12 +28,12 @@ namespace Laboratory
             Brush[] brushes = new Brush[3] { new SolidBrush(Color.Black), new SolidBrush(MainColor), new SolidBrush(Color.Gray) };
 
             //Кузов
-            g.DrawRectangle(new Pen(Color.Black), posX + 134, posY + 4, carWidth - 153, carHeight - 33);
-            g.DrawRectangle(new Pen(Color.Black), posX + 134, posY + 29, carWidth - 133, carHeight - 58);
-            g.FillRectangle(brushes[1], posX + 135, posY + 5, carWidth - 155, carHeight - 35);
-            g.FillRectangle(new SolidBrush(Color.Blue), posX + 140, posY + 10, carWidth - 165, carHeight - 80);
-            g.FillRectangle(brushes[1], posX + 135, posY + 30, carWidth - 135, carHeight - 60);
-            g.FillRectangle(brushes[2], posX + 10, posY + 55, carWidth - 20, 20);
+            g.DrawRectangle(new Pen(Color.Black), posX + 134, posY + 4, truckWidth - 153, truckHeight - 33);
+            g.DrawRectangle(new Pen(Color.Black), posX + 134, posY + 29, truckWidth - 133, truckHeight - 58);
+            g.FillRectangle(brushes[1], posX + 135, posY + 5, truckWidth - 155, truckHeight - 35);
+            g.FillRectangle(new SolidBrush(Color.Blue), posX + 140, posY + 10, truckWidth - 165, truckHeight - 80);
+            g.FillRectangle(brushes[1], posX + 135, posY + 30, truckWidth - 135, truckHeight - 60);
+            g.FillRectangle(brushes[2], posX + 10, posY + 55, truckWidth - 20, 20);
 
             //Колеса
             g.FillEllipse(brushes[0], posX + 20, posY + 60, 40, 40);
@@ -54,13 +54,13 @@ namespace Laboratory
                     }
                     break;
                 case Direction.Right:
-                    if (posX + step < frameWidth - carWidth)
+                    if (posX + step < frameWidth - truckWidth)
                     {
                         posX += step;
                     }
                     break;
                 case Direction.Down:
-                    if (posY + step < frameHeight - carHeight)
+                    if (posY + step < frameHeight - truckHeight)
                     {
                         posY += step;
                     }
