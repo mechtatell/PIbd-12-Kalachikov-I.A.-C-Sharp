@@ -14,7 +14,7 @@ namespace Laboratory
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormCar());
+            Application.Run(new FormTransport());
         }
     }
 }

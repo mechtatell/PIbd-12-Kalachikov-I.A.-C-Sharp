@@ -9,7 +9,7 @@ namespace Laboratory
         public bool HasStrip { private set; get; }
         public bool HasBumper { private set; get; }
         public bool HasTank { private set; get; }
-
+        
         public Tanker(int maxSpeed, float weight, Color mainColor, Color otherColor, bool hasSiren, bool hasStrip, bool hasBumper, bool hasTank)
             : base(maxSpeed, weight, mainColor, 200, 100)
         {
@@ -27,9 +27,9 @@ namespace Laboratory
             //Бак
             if (HasTank)
             {
-                g.FillRectangle(brushes[2], posX + 5, posY + 5, carWidth - 85, carHeight - 35);
-                g.FillEllipse(brushes[2], posX, posY + 5, 10, carHeight - 35);
-                g.FillEllipse(brushes[2], posX + 115, posY + 5, 10, carHeight - 35);
+                g.FillRectangle(brushes[2], posX + 5, posY + 5, truckWidth - 85, truckHeight - 35);
+                g.FillEllipse(brushes[2], posX, posY + 5, 10, truckHeight - 35);
+                g.FillEllipse(brushes[2], posX + 115, posY + 5, 10, truckHeight - 35);
             }
 
             base.Render(g);
@@ -45,7 +45,6 @@ namespace Laboratory
                     new Point((int)(posX + 170), (int)(posY + 6))
                 };
                 g.FillPolygon(new SolidBrush(Color.Yellow), points);
-
                 if (HasTank)
                 {
                     g.FillRectangle(new SolidBrush(Color.Yellow), posX + 30, posY, 15, 6);
@@ -55,12 +54,11 @@ namespace Laboratory
             //Полосы
             if (HasStrip)
             {
-                g.FillRectangle(brushes[2], posX + 140, posY + 45, carWidth - 150, 5);
-
+                g.FillRectangle(brushes[2], posX + 140, posY + 45, truckWidth - 150, 5);
                 if (HasTank)
                 {
-                    g.FillRectangle(brushes[1], posX + 10, posY + 25, carWidth - 95, 5);
-                    g.FillRectangle(brushes[1], posX + 10, posY + 35, carWidth - 95, 5);
+                    g.FillRectangle(brushes[1], posX + 10, posY + 25, truckWidth - 95, 5);
+                    g.FillRectangle(brushes[1], posX + 10, posY + 35, truckWidth - 95, 5);
                 }
             }
 
