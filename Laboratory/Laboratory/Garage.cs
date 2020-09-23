@@ -41,7 +41,7 @@ namespace Laboratory
 
         public static T operator -(Garage<T> garage, int index)
         {
-            if (index < garage.places.Length && garage.places[index] != null)
+            if (index >= 0 && index < garage.places.Length && garage.places[index] != null)
             {
                 T temp = garage.places[index];
                 garage.places[index] = null;
