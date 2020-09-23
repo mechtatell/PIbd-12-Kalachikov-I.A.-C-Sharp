@@ -13,15 +13,15 @@ namespace Laboratory
         public float Weight { protected set; get; }
         public Color MainColor { protected set; get; }
 
-        public void SetPosition(int x, int y, int width, int height)
+        public void SetPosition(int posX, int posY, int frameWidth, int frameHeight)
         {
-            frameHeight = height;
-            frameWidth = width;
+            this.frameWidth = frameWidth;
+            this.frameHeight = frameHeight;
             if (posX >= 0 && posX < frameWidth &&
                 posY >= 0 && posY < frameHeight)
             {
-                posX = x;
-                posY = y;
+                this.posX = posX;
+                this.posY = posY;
             }
         }
         public abstract void MoveTransport(Direction direction);

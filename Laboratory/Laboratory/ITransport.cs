@@ -4,7 +4,7 @@ namespace Laboratory
 {
     interface ITransport
     {
-        void SetPosition(int x, int y, int width, int height);
+        void SetPosition(int posX, int posY, int frameWidth, int frameHeight);
         void MoveTransport(Direction direction);
         void Render(Graphics g);
     }
