@@ -10,33 +10,29 @@ namespace Laboratory
         private int frameWidth;
         private int frameHeight;
 
-        private int occupiedPlaceCount;
-        private readonly int columnsCount;
-        private readonly int rowsCount;
-
         public Garage(int frameWidth, int frameHeight)
         {
             this.frameWidth = frameWidth;
             this.frameHeight = frameHeight;
-            columnsCount = frameWidth / placeWidth;
-            rowsCount = frameHeight / placeHeight;
+            int columnsCount = frameWidth / placeWidth;
+            int rowsCount = frameHeight / placeHeight;
             places = new T[columnsCount * rowsCount];
         }
 
         public static bool operator +(Garage<T> garage, T transport)
         {
             int margin = 30;
-            if (garage.occupiedPlaceCount < garage.places.Length)
+            int rowsCount = garage.frameHeight / garage.placeHeight;
+            for (int i = 0; i < garage.places.Length; i++)
             {
-                transport.SetPosition(margin + garage.placeWidth * ((garage.occupiedPlaceCount) / garage.rowsCount), margin + garage.placeHeight * ((garage.occupiedPlaceCount) % garage.rowsCount), garage.frameWidth, garage.frameHeight);
-                garage.places[garage.occupiedPlaceCount] = transport;
-                garage.occupiedPlaceCount += 1;
-                return true;
+                if (garage.places[i] == null)
+                {
+                    transport.SetPosition(margin + garage.placeWidth * (i / rowsCount), margin + garage.placeHeight * (i % rowsCount), garage.frameWidth, garage.frameHeight);
+                    garage.places[i] = transport;
+                    return true;
+                }
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public static T operator -(Garage<T> garage, int index)
@@ -45,7 +41,6 @@ namespace Laboratory
             {
                 T temp = garage.places[index];
                 garage.places[index] = null;
-                garage.occupiedPlaceCount -= 1;
                 return temp;
             }
             else
@@ -67,6 +62,8 @@ namespace Laboratory
         {
             Pen pen = new Pen(Color.Black, 3);
             int margin = 15;
+            int rowsCount = frameHeight / placeHeight;
+            int columnsCount = frameWidth / placeWidth;
             for (int i = 0; i < rowsCount; i++)
             {
                 for (int j = 0; j < columnsCount; j++)
