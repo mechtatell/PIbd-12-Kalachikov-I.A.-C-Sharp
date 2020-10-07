@@ -43,10 +43,7 @@ namespace Laboratory
                 garage.places[index] = null;
                 return temp;
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
         public void Render(Graphics g)
@@ -69,7 +66,10 @@ namespace Laboratory
                 for (int j = 0; j < columnsCount; j++)
                 {
                     g.DrawLine(pen, margin + j * placeWidth, margin + i * placeHeight, margin + (j + 1) * placeWidth, margin + i * placeHeight);
-                    g.DrawLine(pen, margin + j * placeWidth, margin + i * placeHeight, margin + j * placeWidth, margin + (i + 1) * placeHeight);
+                    if (j > 0)
+                    {
+                        g.DrawLine(pen, margin + j * placeWidth, margin + i * placeHeight, margin + j * placeWidth, margin + (i + 1) * placeHeight);
+                    }
                 }
             }
 
