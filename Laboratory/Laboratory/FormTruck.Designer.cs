@@ -1,6 +1,6 @@
 ﻿namespace Laboratory
 {
-    partial class FormTransport
+    partial class FormTruck
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTransport));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTruck));
             this.pictureBoxCar = new System.Windows.Forms.PictureBox();
             this.buttonCreateTruck = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
