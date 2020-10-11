@@ -24,6 +24,7 @@ namespace Laboratory
                 this.posY = posY;
             }
         }
+
         public abstract void MoveTransport(Direction direction);
         public abstract void Render(Graphics g);
     }
