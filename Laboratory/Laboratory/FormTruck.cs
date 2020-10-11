@@ -31,23 +31,23 @@ namespace Laboratory
 
         private void buttonMove_Click(object sender, EventArgs e)
         {
-                string name = (sender as Button).Name;
-                switch (name)
-                {
-                    case "buttonUp":
-                        truck?.MoveTransport(Direction.Up);
-                        break;
-                    case "buttonDown":
-                        truck?.MoveTransport(Direction.Down);
-                        break;
-                    case "buttonLeft":
-                        truck?.MoveTransport(Direction.Left);
-                        break;
-                    case "buttonRight":
-                        truck?.MoveTransport(Direction.Right);
-                        break;
-                }
-                Render();
+            string name = (sender as Button).Name;
+            switch (name)
+            {
+                case "buttonUp":
+                    truck?.MoveTransport(Direction.Up);
+                    break;
+                case "buttonDown":
+                    truck?.MoveTransport(Direction.Down);
+                    break;
+                case "buttonLeft":
+                    truck?.MoveTransport(Direction.Left);
+                    break;
+                case "buttonRight":
+                    truck?.MoveTransport(Direction.Right);
+                    break;
+            }
+            Render();
         }
 
         private void Render()
