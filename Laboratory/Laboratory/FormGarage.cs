@@ -28,7 +28,7 @@ namespace Laboratory
             ColorDialog colorDialog = new ColorDialog();
             if (colorDialog.ShowDialog() == DialogResult.OK)
             {
-                Truck truck = new Truck(100, 1000, colorDialog.Color);
+                var truck = new Truck(100, 1000, colorDialog.Color);
                 if (garage + truck)
                 {
                     Render();
@@ -48,7 +48,7 @@ namespace Laboratory
                 ColorDialog otherColorDialog = new ColorDialog();
                 if (otherColorDialog.ShowDialog() == DialogResult.OK)
                 {
-                    Truck truck = new Tanker(100, 1000, colorDialog.Color, otherColorDialog.Color, true, true, true, true);
+                    var truck = new Tanker(100, 1000, colorDialog.Color, otherColorDialog.Color, true, true, true, true);
                     if (garage + truck)
                     {
                         Render();
@@ -65,7 +65,7 @@ namespace Laboratory
         {
             if (maskedTextBoxPlace.Text != "")
             {
-                Truck truck = garage - Convert.ToInt32(maskedTextBoxPlace.Text);
+                var truck = garage - Convert.ToInt32(maskedTextBoxPlace.Text);
                 if (truck != null)
                 {
                     FormTruck formTransport = new FormTruck();

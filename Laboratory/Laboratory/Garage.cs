@@ -7,8 +7,8 @@ namespace Laboratory
         private T[] places;
         private readonly int placeWidth = 240;
         private readonly int placeHeight = 140;
-        private int frameWidth;
-        private int frameHeight;
+        private readonly int frameWidth;
+        private readonly int frameHeight;
 
         public Garage(int frameWidth, int frameHeight)
         {
@@ -54,7 +54,7 @@ namespace Laboratory
                 places[i]?.Render(g);
             }
         }
-        
+
         public void RenderMarking(Graphics g)
         {
             Pen pen = new Pen(Color.Black, 3);
