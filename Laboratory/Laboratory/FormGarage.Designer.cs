@@ -117,7 +117,7 @@
             this.Controls.Add(this.buttonCreateTruck);
             this.Controls.Add(this.pictureBoxGarage);
             this.Name = "FormGarage";
-            this.Text = "FormGarage";
+            this.Text = "Форма с гаражом";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarage)).EndInit();
             this.groupBoxTake.ResumeLayout(false);
             this.groupBoxTake.PerformLayout();
