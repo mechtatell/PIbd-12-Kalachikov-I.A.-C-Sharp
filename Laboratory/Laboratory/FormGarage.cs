@@ -68,10 +68,10 @@ namespace Laboratory
                 var truck = garage - Convert.ToInt32(maskedTextBoxPlace.Text);
                 if (truck != null)
                 {
-                    FormTruck formTransport = new FormTruck();
-                    formTransport.SetTruck(truck);
+                    FormTruck formTruck = new FormTruck();
+                    formTruck.SetTruck(truck);
                     Render();
-                    formTransport.ShowDialog();
+                    formTruck.ShowDialog();
                 }
                 else
                 {

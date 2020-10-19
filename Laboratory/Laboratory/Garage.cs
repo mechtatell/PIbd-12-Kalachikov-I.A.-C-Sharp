@@ -19,7 +19,7 @@ namespace Laboratory
             places = new T[columnsCount * rowsCount];
         }
 
-        public static bool operator +(Garage<T> garage, T transport)
+        public static bool operator +(Garage<T> garage, T truck)
         {
             int margin = 30;
             int rowsCount = garage.frameHeight / garage.placeHeight;
@@ -27,8 +27,8 @@ namespace Laboratory
             {
                 if (garage.places[i] == null)
                 {
-                    transport.SetPosition(margin + garage.placeWidth * (i / rowsCount), margin + garage.placeHeight * (i % rowsCount), garage.frameWidth, garage.frameHeight);
-                    garage.places[i] = transport;
+                    truck.SetPosition(margin + garage.placeWidth * (i / rowsCount), margin + garage.placeHeight * (i % rowsCount), garage.frameWidth, garage.frameHeight);
+                    garage.places[i] = truck;
                     return true;
                 }
             }
@@ -39,9 +39,9 @@ namespace Laboratory
         {
             if (index >= 0 && index < garage.places.Length && garage.places[index] != null)
             {
-                T temp = garage.places[index];
+                T truck = garage.places[index];
                 garage.places[index] = null;
-                return temp;
+                return truck;
             }
             return null;
         }
