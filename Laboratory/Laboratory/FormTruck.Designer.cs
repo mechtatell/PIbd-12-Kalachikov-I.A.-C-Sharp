@@ -101,7 +101,7 @@
             this.Controls.Add(this.buttonLeft);
             this.Controls.Add(this.pictureBoxCar);
             this.Name = "FormTruck";
-            this.Text = "FormTanker";
+            this.Text = "Форма с грузовиком";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).EndInit();
             this.ResumeLayout(false);
 
