@@ -4,11 +4,11 @@ using System.Windows.Forms;
 
 namespace Laboratory
 {
-    public partial class FormGarage : Form
+    public partial class FormGarages : Form
     {
         private readonly GarageCollection garageCollection;
 
-        public FormGarage()
+        public FormGarages()
         {
             InitializeComponent();
             garageCollection = new GarageCollection(pictureBoxGarage.Width, pictureBoxGarage.Height);
@@ -72,7 +72,7 @@ namespace Laboratory
                 if (MessageBox.Show($"Удалить гараж {listBoxGarages.SelectedItem}?", "Удаление",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    garageCollection.RemoveGarage(textBoxGarageName.Text);
+                    garageCollection.RemoveGarage(listBoxGarages.SelectedItem.ToString());
                     ReloadLevels();
                     Render();
                 }

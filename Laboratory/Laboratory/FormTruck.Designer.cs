@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTruck));
-            this.pictureBoxCar = new System.Windows.Forms.PictureBox();
+            this.pictureBoxTruck = new System.Windows.Forms.PictureBox();
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTruck)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBoxCar
+            // pictureBoxTruck
             // 
-            this.pictureBoxCar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxCar.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxCar.Name = "pictureBoxCar";
-            this.pictureBoxCar.Size = new System.Drawing.Size(800, 450);
-            this.pictureBoxCar.TabIndex = 0;
-            this.pictureBoxCar.TabStop = false;
+            this.pictureBoxTruck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxTruck.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxTruck.Name = "pictureBoxTruck";
+            this.pictureBoxTruck.Size = new System.Drawing.Size(800, 450);
+            this.pictureBoxTruck.TabIndex = 0;
+            this.pictureBoxTruck.TabStop = false;
             // 
             // buttonLeft
             // 
@@ -99,17 +99,17 @@
             this.Controls.Add(this.buttonUp);
             this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.buttonLeft);
-            this.Controls.Add(this.pictureBoxCar);
+            this.Controls.Add(this.pictureBoxTruck);
             this.Name = "FormTruck";
             this.Text = "Форма с грузовиком";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTruck)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxCar;
+        private System.Windows.Forms.PictureBox pictureBoxTruck;
         private System.Windows.Forms.Button buttonLeft;
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Button buttonUp;

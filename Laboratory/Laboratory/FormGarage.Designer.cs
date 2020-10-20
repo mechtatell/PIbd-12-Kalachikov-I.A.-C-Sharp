@@ -1,6 +1,6 @@
 ﻿namespace Laboratory
 {
-    partial class FormGarage
+    partial class FormGarages
     {
         /// <summary>
         /// Required designer variable.
