@@ -36,7 +36,27 @@ namespace Laboratory
 
         public Garage<Truck> this[string name]
         {
-            get => garageStages[name];
+            get 
+            {
+                if (garageStages.ContainsKey(name))
+                {
+                    return garageStages[name];
+                }
+                return null;
+            }
+        }
+
+        public Garage<Truck> this[int index]
+        {
+            get
+            {
+                if (index >= 0 && index < garageStages.Count)
+                {
+                    string name = Keys[index];
+                    return garageStages[name];
+                }
+                return null;
+            }
         }
     }
 }
