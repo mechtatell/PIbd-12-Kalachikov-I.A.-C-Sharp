@@ -30,12 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTruck));
             this.pictureBoxCar = new System.Windows.Forms.PictureBox();
-            this.buttonCreateTruck = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
-            this.buttonCreateTanker = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,16 +45,6 @@
             this.pictureBoxCar.Size = new System.Drawing.Size(800, 450);
             this.pictureBoxCar.TabIndex = 0;
             this.pictureBoxCar.TabStop = false;
-            // 
-            // buttonCreateTruck
-            // 
-            this.buttonCreateTruck.Location = new System.Drawing.Point(12, 12);
-            this.buttonCreateTruck.Name = "buttonCreateTruck";
-            this.buttonCreateTruck.Size = new System.Drawing.Size(180, 30);
-            this.buttonCreateTruck.TabIndex = 1;
-            this.buttonCreateTruck.Text = "Создать грузовик";
-            this.buttonCreateTruck.UseVisualStyleBackColor = true;
-            this.buttonCreateTruck.Click += new System.EventHandler(this.buttonCreateTruck_Click);
             // 
             // buttonLeft
             // 
@@ -102,30 +90,18 @@
             this.buttonDown.UseVisualStyleBackColor = true;
             this.buttonDown.Click += new System.EventHandler(this.buttonMove_Click);
             // 
-            // buttonCreateTanker
-            // 
-            this.buttonCreateTanker.Location = new System.Drawing.Point(200, 12);
-            this.buttonCreateTanker.Name = "buttonCreateTanker";
-            this.buttonCreateTanker.Size = new System.Drawing.Size(180, 30);
-            this.buttonCreateTanker.TabIndex = 1;
-            this.buttonCreateTanker.Text = "Создать бензовоз";
-            this.buttonCreateTanker.UseVisualStyleBackColor = true;
-            this.buttonCreateTanker.Click += new System.EventHandler(this.buttonCreateTanker_Click);
-            // 
-            // FormCar
+            // FormTruck
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.buttonCreateTanker);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonUp);
             this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.buttonLeft);
-            this.Controls.Add(this.buttonCreateTruck);
             this.Controls.Add(this.pictureBoxCar);
-            this.Name = "FormCar";
-            this.Text = "FormTanker";
+            this.Name = "FormTruck";
+            this.Text = "Форма с грузовиком";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCar)).EndInit();
             this.ResumeLayout(false);
 
@@ -134,12 +110,10 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxCar;
-        private System.Windows.Forms.Button buttonCreateTruck;
         private System.Windows.Forms.Button buttonLeft;
         private System.Windows.Forms.Button buttonRight;
         private System.Windows.Forms.Button buttonUp;
         private System.Windows.Forms.Button buttonDown;
-        private System.Windows.Forms.Button buttonCreateTanker;
     }
 }
 

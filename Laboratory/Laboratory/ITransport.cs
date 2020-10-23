@@ -2,7 +2,7 @@
 
 namespace Laboratory
 {
-    interface ITransport
+    public interface ITransport
     {
         void SetPosition(int posX, int posY, int frameWidth, int frameHeight);
         void MoveTransport(Direction direction);
