@@ -11,7 +11,7 @@ namespace Laboratory
         public void SetTruck(ITransport truck)
         {
             Random random = new Random();
-            truck.SetPosition(random.Next(10, 100), random.Next(100, 200), pictureBoxCar.Width, pictureBoxCar.Height);
+            truck.SetPosition(random.Next(10, 100), random.Next(100, 200), pictureBoxTruck.Width, pictureBoxTruck.Height);
             this.truck = truck;
             Render();
         }
@@ -44,10 +44,10 @@ namespace Laboratory
 
         private void Render()
         {
-            Bitmap map = new Bitmap(pictureBoxCar.Width, pictureBoxCar.Height);
+            Bitmap map = new Bitmap(pictureBoxTruck.Width, pictureBoxTruck.Height);
             Graphics g = Graphics.FromImage(map);
             truck?.Render(g);
-            pictureBoxCar.Image = map;
+            pictureBoxTruck.Image = map;
         }
     }
 }

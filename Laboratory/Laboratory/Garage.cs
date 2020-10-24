@@ -1,10 +1,12 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace Laboratory
 {
     class Garage<T> where T : class, ITransport
     {
-        private T[] places;
+        private readonly List<T> places;
+        private readonly int maxCount;
         private readonly int placeWidth = 240;
         private readonly int placeHeight = 140;
         private readonly int frameWidth;
@@ -16,31 +18,26 @@ namespace Laboratory
             this.frameHeight = frameHeight;
             int columnsCount = frameWidth / placeWidth;
             int rowsCount = frameHeight / placeHeight;
-            places = new T[columnsCount * rowsCount];
+            maxCount = columnsCount * rowsCount;
+            places = new List<T>();
         }
 
         public static bool operator +(Garage<T> garage, T truck)
         {
-            int margin = 30;
-            int rowsCount = garage.frameHeight / garage.placeHeight;
-            for (int i = 0; i < garage.places.Length; i++)
+            if (garage.places.Count < garage.maxCount)
             {
-                if (garage.places[i] == null)
-                {
-                    truck.SetPosition(margin + garage.placeWidth * (i / rowsCount), margin + garage.placeHeight * (i % rowsCount), garage.frameWidth, garage.frameHeight);
-                    garage.places[i] = truck;
-                    return true;
-                }
+                garage.places.Add(truck);
+                return true;
             }
             return false;
         }
 
         public static T operator -(Garage<T> garage, int index)
         {
-            if (index >= 0 && index < garage.places.Length && garage.places[index] != null)
+            if (index >= 0 && index < garage.maxCount && garage.places[index] != null)
             {
                 T truck = garage.places[index];
-                garage.places[index] = null;
+                garage.places.RemoveAt(index);
                 return truck;
             }
             return null;
@@ -48,10 +45,14 @@ namespace Laboratory
 
         public void Render(Graphics g)
         {
+            int margin = 30;
+            int rowsCount = frameHeight / placeHeight;
+
             RenderMarking(g);
-            for (int i = 0; i < places.Length; i++)
+            for (int i = 0; i < places.Count; i++)
             {
-                places[i]?.Render(g);
+                places[i].SetPosition(margin + placeWidth * (i / rowsCount), margin + placeHeight * (i % rowsCount), frameWidth, frameHeight);
+                places[i].Render(g);
             }
         }
 
