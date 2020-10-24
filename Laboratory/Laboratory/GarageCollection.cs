@@ -46,6 +46,9 @@ namespace Laboratory
             }
         }
 
+        /**
+         * Дополнительной задание при сдаче лабы
+         */
         public Garage<Truck> this[int index]
         {
             get

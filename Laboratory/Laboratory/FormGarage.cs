@@ -17,7 +17,7 @@ namespace Laboratory
 
         private void ReloadLevels()
         {
-            int index = listBoxGarages.SelectedIndex;
+            int currentIndex = listBoxGarages.SelectedIndex;
 
             listBoxGarages.Items.Clear();
             for (int i = 0; i < garageCollection.Keys.Count; i++)
@@ -25,14 +25,13 @@ namespace Laboratory
                 listBoxGarages.Items.Add(garageCollection.Keys[i]);
             }
 
-            int itemsCount = listBoxGarages.Items.Count;
-            if (itemsCount > 0 && (index < 0 || index >= itemsCount))
+            if (listBoxGarages.Items.Count > 0 && (currentIndex < 0 || currentIndex >= listBoxGarages.Items.Count))
             {
                 listBoxGarages.SelectedIndex = 0;
             }
-            else if (itemsCount > 0 && index >= 0 && index < itemsCount)
+            else if (listBoxGarages.Items.Count > 0 && currentIndex >= 0 && currentIndex < listBoxGarages.Items.Count)
             {
-                listBoxGarages.SelectedIndex = index;
+                listBoxGarages.SelectedIndex = currentIndex;
             }
         }
 
