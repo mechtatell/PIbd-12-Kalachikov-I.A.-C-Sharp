@@ -45,7 +45,7 @@ namespace Laboratory
             }
             else
             {
-               g.FillRectangle(new SolidBrush(Color.Transparent), 0, 0, pictureBoxGarage.Width, pictureBoxGarage.Height);
+                g.FillRectangle(new SolidBrush(Color.Transparent), 0, 0, pictureBoxGarage.Width, pictureBoxGarage.Height);
             }
             pictureBoxGarage.Image = bitmap;
         }
@@ -84,48 +84,22 @@ namespace Laboratory
 
         private void buttonCreateTruck_Click(object sender, EventArgs e)
         {
-            if (listBoxGarages.SelectedIndex >= 0)
-            {
-                ColorDialog colorDialog = new ColorDialog();
-                if (colorDialog.ShowDialog() == DialogResult.OK)
-                {
-                    var truck = new Truck(100, 1000, colorDialog.Color);
-                    if (garageCollection[listBoxGarages.SelectedItem.ToString()] + truck)
-                    {
-                        Render();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Гараж переполнен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Гараж не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            var formTruckConfig = new FormTruckCongif();
+            formTruckConfig.AddEvent(AddTruck);
+            formTruckConfig.ShowDialog();
         }
 
-        private void buttonCreateTanker_Click(object sender, EventArgs e)
+        private void AddTruck(Truck truck)
         {
-            if (listBoxGarages.SelectedIndex >= 0)
+            if (truck != null && listBoxGarages.SelectedIndex >= 0)
             {
-                ColorDialog colorDialog = new ColorDialog();
-                if (colorDialog.ShowDialog() == DialogResult.OK)
+                if (garageCollection[listBoxGarages.SelectedItem.ToString()] + truck)
                 {
-                    ColorDialog otherColorDialog = new ColorDialog();
-                    if (otherColorDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        var truck = new Tanker(100, 1000, colorDialog.Color, otherColorDialog.Color, true, true, true, true);
-                        if (garageCollection[listBoxGarages.SelectedItem.ToString()] + truck)
-                        {
-                            Render();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Гараж переполнен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
+                    Render();
+                }
+                else
+                {
+                    MessageBox.Show("Гараж переполнен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else

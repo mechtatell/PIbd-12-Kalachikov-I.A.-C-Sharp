@@ -7,5 +7,6 @@ namespace Laboratory
         void SetPosition(int posX, int posY, int frameWidth, int frameHeight);
         void MoveTransport(Direction direction);
         void Render(Graphics g);
+        void SetMainColor(Color color);
     }
 }

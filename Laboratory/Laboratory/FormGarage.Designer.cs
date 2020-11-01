@@ -30,7 +30,6 @@
         {
             this.pictureBoxGarage = new System.Windows.Forms.PictureBox();
             this.buttonCreateTruck = new System.Windows.Forms.Button();
-            this.buttonCreateTanker = new System.Windows.Forms.Button();
             this.groupBoxTake = new System.Windows.Forms.GroupBox();
             this.buttonTake = new System.Windows.Forms.Button();
             this.maskedTextBoxPlace = new System.Windows.Forms.MaskedTextBox();
@@ -59,28 +58,18 @@
             // 
             this.buttonCreateTruck.Location = new System.Drawing.Point(668, 12);
             this.buttonCreateTruck.Name = "buttonCreateTruck";
-            this.buttonCreateTruck.Size = new System.Drawing.Size(120, 30);
+            this.buttonCreateTruck.Size = new System.Drawing.Size(120, 42);
             this.buttonCreateTruck.TabIndex = 1;
             this.buttonCreateTruck.Text = "Создать грузовик";
             this.buttonCreateTruck.UseVisualStyleBackColor = true;
             this.buttonCreateTruck.Click += new System.EventHandler(this.buttonCreateTruck_Click);
-            // 
-            // buttonCreateTanker
-            // 
-            this.buttonCreateTanker.Location = new System.Drawing.Point(668, 48);
-            this.buttonCreateTanker.Name = "buttonCreateTanker";
-            this.buttonCreateTanker.Size = new System.Drawing.Size(120, 30);
-            this.buttonCreateTanker.TabIndex = 1;
-            this.buttonCreateTanker.Text = "Создать бензовоз";
-            this.buttonCreateTanker.UseVisualStyleBackColor = true;
-            this.buttonCreateTanker.Click += new System.EventHandler(this.buttonCreateTanker_Click);
             // 
             // groupBoxTake
             // 
             this.groupBoxTake.Controls.Add(this.buttonTake);
             this.groupBoxTake.Controls.Add(this.maskedTextBoxPlace);
             this.groupBoxTake.Controls.Add(this.labelPlace);
-            this.groupBoxTake.Location = new System.Drawing.Point(668, 84);
+            this.groupBoxTake.Location = new System.Drawing.Point(668, 70);
             this.groupBoxTake.Name = "groupBoxTake";
             this.groupBoxTake.Size = new System.Drawing.Size(120, 100);
             this.groupBoxTake.TabIndex = 2;
@@ -174,17 +163,16 @@
             this.textBoxGarageName.Size = new System.Drawing.Size(108, 23);
             this.textBoxGarageName.TabIndex = 4;
             // 
-            // FormGarage
+            // FormGarages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBoxGarage);
             this.Controls.Add(this.groupBoxTake);
-            this.Controls.Add(this.buttonCreateTanker);
             this.Controls.Add(this.buttonCreateTruck);
             this.Controls.Add(this.pictureBoxGarage);
-            this.Name = "FormGarage";
+            this.Name = "FormGarages";
             this.Text = "Форма с гаражами";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarage)).EndInit();
             this.groupBoxTake.ResumeLayout(false);
@@ -199,7 +187,6 @@
 
         private System.Windows.Forms.PictureBox pictureBoxGarage;
         private System.Windows.Forms.Button buttonCreateTruck;
-        private System.Windows.Forms.Button buttonCreateTanker;
         private System.Windows.Forms.GroupBox groupBoxTake;
         private System.Windows.Forms.Label labelPlace;
         private System.Windows.Forms.Button buttonTake;

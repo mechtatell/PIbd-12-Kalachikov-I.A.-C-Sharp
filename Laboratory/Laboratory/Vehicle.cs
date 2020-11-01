@@ -2,7 +2,7 @@
 
 namespace Laboratory
 {
-    abstract class Vehicle : ITransport
+    public abstract class Vehicle : ITransport
     {
         protected float posX;
         protected float posY;
@@ -27,5 +27,10 @@ namespace Laboratory
 
         public abstract void MoveTransport(Direction direction);
         public abstract void Render(Graphics g);
+
+        public void SetMainColor(Color color)
+        {
+            MainColor = color;
+        }
     }
 }
