@@ -84,14 +84,21 @@ namespace Laboratory
 
         private void buttonCreateTruck_Click(object sender, EventArgs e)
         {
-            var formTruckConfig = new FormTruckCongif();
-            formTruckConfig.AddEvent(AddTruck);
-            formTruckConfig.ShowDialog();
+            if (listBoxGarages.SelectedIndex >= 0)
+            {
+                var formTruckConfig = new FormTruckCongif();
+                formTruckConfig.AddEvent(AddTruck);
+                formTruckConfig.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Гараж не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void AddTruck(Truck truck)
         {
-            if (truck != null && listBoxGarages.SelectedIndex >= 0)
+            if (truck != null)
             {
                 if (garageCollection[listBoxGarages.SelectedItem.ToString()] + truck)
                 {
@@ -101,10 +108,6 @@ namespace Laboratory
                 {
                     MessageBox.Show("Гараж переполнен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Гараж не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

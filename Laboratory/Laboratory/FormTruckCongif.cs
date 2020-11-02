@@ -62,10 +62,11 @@ namespace Laboratory
             switch (e.Data.GetData(DataFormats.Text).ToString())
             {
                 case "Грузовик":
-                    truck = new Truck(100, 500, Color.White);
+                    truck = new Truck((int)numericUpDownMaxSpeed.Value, (int)numericUpDownWeight.Value, Color.White);
                     break;
                 case "Бензовоз":
-                    truck = new Tanker(100, 500, Color.White, Color.Black, true, true, true, true);
+                    truck = new Tanker((int)numericUpDownMaxSpeed.Value, (int)numericUpDownWeight.Value, Color.White, Color.Black,
+                        checkBoxHasSiren.Checked, checkBoxHasStrip.Checked, checkBoxHasBumper.Checked, checkBoxHasTank.Checked);
                     break;
             }
             RenderTruck();
