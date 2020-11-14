@@ -47,6 +47,7 @@ namespace Laboratory
                 pictureBoxTruck.Image = bitmap;
             }
         }
+
         private void labelTruck_MouseDown(object sender, MouseEventArgs e)
         {
             labelTruck.DoDragDrop(labelTruck.Text, DragDropEffects.Move | DragDropEffects.Copy);
