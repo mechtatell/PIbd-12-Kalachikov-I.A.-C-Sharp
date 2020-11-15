@@ -125,16 +125,46 @@
             // numericUpDownWeight
             // 
             this.numericUpDownWeight.Location = new System.Drawing.Point(10, 76);
+            this.numericUpDownWeight.Maximum = new decimal(new int[] {
+            30000,
+            0,
+            0,
+            0});
+            this.numericUpDownWeight.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numericUpDownWeight.Name = "numericUpDownWeight";
             this.numericUpDownWeight.Size = new System.Drawing.Size(92, 23);
             this.numericUpDownWeight.TabIndex = 1;
+            this.numericUpDownWeight.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             // 
             // numericUpDownMaxSpeed
             // 
             this.numericUpDownMaxSpeed.Location = new System.Drawing.Point(10, 35);
+            this.numericUpDownMaxSpeed.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.numericUpDownMaxSpeed.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             this.numericUpDownMaxSpeed.Name = "numericUpDownMaxSpeed";
             this.numericUpDownMaxSpeed.Size = new System.Drawing.Size(92, 23);
             this.numericUpDownMaxSpeed.TabIndex = 1;
+            this.numericUpDownMaxSpeed.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // labelWeight
             // 
@@ -193,7 +223,7 @@
             this.panelTruck.Controls.Add(this.pictureBoxTruck);
             this.panelTruck.Location = new System.Drawing.Point(238, 18);
             this.panelTruck.Name = "panelTruck";
-            this.panelTruck.Size = new System.Drawing.Size(275, 147);
+            this.panelTruck.Size = new System.Drawing.Size(275, 161);
             this.panelTruck.TabIndex = 1;
             this.panelTruck.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelTruck_DragDrop);
             this.panelTruck.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelTruck_DragEnter);
@@ -203,7 +233,7 @@
             this.pictureBoxTruck.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxTruck.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxTruck.Name = "pictureBoxTruck";
-            this.pictureBoxTruck.Size = new System.Drawing.Size(275, 147);
+            this.pictureBoxTruck.Size = new System.Drawing.Size(275, 161);
             this.pictureBoxTruck.TabIndex = 0;
             this.pictureBoxTruck.TabStop = false;
             // 
