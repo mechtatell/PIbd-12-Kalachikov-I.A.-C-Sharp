@@ -12,6 +12,13 @@ namespace Laboratory
         {
             InitializeComponent();
             garageCollection = new GarageCollection(pictureBoxGarage.Width, pictureBoxGarage.Height);
+
+            ToolStripMenuItem saveFileMenuItem = new ToolStripMenuItem("Сохранить");
+            ToolStripMenuItem loadFileMenuItem = new ToolStripMenuItem("Загрузить");
+            toolStripMenuItemFile.DropDownItems.Add(saveFileMenuItem);
+            toolStripMenuItemFile.DropDownItems.Add(loadFileMenuItem);
+            saveFileMenuItem.Click += saveFileMenuItem_Click;
+            loadFileMenuItem.Click += loadFileMenuItem_Click;
             Render();
         }
 
@@ -140,6 +147,46 @@ namespace Laboratory
         private void listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Render();
+        }
+
+        private void saveFileMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "txt file | *.txt";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (garageCollection.SaveData(saveFileDialog.FileName))
+                {
+                    MessageBox.Show("Сохранение прошло успешно", "Результат",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не сохранилось", "Результат",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void loadFileMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "txt file | *.txt";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (garageCollection.LoadData(openFileDialog.FileName))
+                {
+                    MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    ReloadLevels();
+                    Render();
+                }
+                else
+                {
+                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

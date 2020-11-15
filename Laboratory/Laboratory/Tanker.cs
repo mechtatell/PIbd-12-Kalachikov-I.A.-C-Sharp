@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace Laboratory
 {
@@ -9,7 +10,7 @@ namespace Laboratory
         public bool HasStrip { private set; get; }
         public bool HasBumper { private set; get; }
         public bool HasTank { private set; get; }
-        
+
         public Tanker(int maxSpeed, float weight, Color mainColor, Color otherColor, bool hasSiren, bool hasStrip, bool hasBumper, bool hasTank)
             : base(maxSpeed, weight, mainColor, 200, 100)
         {
@@ -18,6 +19,22 @@ namespace Laboratory
             HasStrip = hasStrip;
             HasBumper = hasBumper;
             HasTank = hasTank;
+        }
+
+        public Tanker(string info) : base(info)
+        {
+            string[] args = info.Split(separator);
+            if (args.Length == 8)
+            {
+                MaxSpeed = Convert.ToInt32(args[0]);
+                Weight = Convert.ToInt32(args[1]);
+                MainColor = Color.FromName(args[2]);
+                OtherColor = Color.FromName(args[3]);
+                HasSiren = Convert.ToBoolean(args[4]);
+                HasStrip = Convert.ToBoolean(args[5]);
+                HasBumper = Convert.ToBoolean(args[6]);
+                HasTank = Convert.ToBoolean(args[7]);
+            }
         }
 
         public override void Render(Graphics g)
@@ -72,6 +89,11 @@ namespace Laboratory
         public void SetOtherColor(Color color)
         {
             OtherColor = color;
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}{separator}{OtherColor.Name}{separator}{HasSiren}{separator}{HasStrip}{separator}{HasBumper}{ separator}{ HasTank}";
         }
     }
 }

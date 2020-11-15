@@ -79,5 +79,14 @@ namespace Laboratory
                 g.DrawLine(pen, margin + j * placeWidth, margin + rowsCount * placeHeight, margin + (j + 1) * placeWidth, margin + rowsCount * placeHeight);
             }
         }
+
+        public T GetTruck(int index)
+        {
+            if (index >= 0 && index < places.Count)
+            {
+                return places[index];
+            }
+            return null;
+        }
     }
 }
