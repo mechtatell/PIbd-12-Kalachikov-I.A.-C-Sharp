@@ -41,7 +41,7 @@
             this.groupBoxGarage = new System.Windows.Forms.GroupBox();
             this.textBoxGarageName = new System.Windows.Forms.TextBox();
             this.menuStripGarages = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarage)).BeginInit();
             this.groupBoxTake.SuspendLayout();
             this.groupBoxGarage.SuspendLayout();
@@ -59,7 +59,7 @@
             // 
             // buttonCreateTruck
             // 
-            this.buttonCreateTruck.Location = new System.Drawing.Point(668, 43);
+            this.buttonCreateTruck.Location = new System.Drawing.Point(668, 41);
             this.buttonCreateTruck.Name = "buttonCreateTruck";
             this.buttonCreateTruck.Size = new System.Drawing.Size(120, 42);
             this.buttonCreateTruck.TabIndex = 1;
@@ -169,18 +169,17 @@
             // menuStripGarages
             // 
             this.menuStripGarages.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemFile});
+            this.menuItemFile});
             this.menuStripGarages.Location = new System.Drawing.Point(0, 0);
             this.menuStripGarages.Name = "menuStripGarages";
             this.menuStripGarages.Size = new System.Drawing.Size(800, 24);
             this.menuStripGarages.TabIndex = 5;
-            this.menuStripGarages.Text = "menuStrip1";
             // 
-            // toolStripMenuItemFile
+            // menuItemFile
             // 
-            this.toolStripMenuItemFile.Name = "toolStripMenuItemFile";
-            this.toolStripMenuItemFile.Size = new System.Drawing.Size(48, 20);
-            this.toolStripMenuItemFile.Text = "Файл";
+            this.menuItemFile.Name = "menuItemFile";
+            this.menuItemFile.Size = new System.Drawing.Size(48, 20);
+            this.menuItemFile.Text = "Файл";
             // 
             // FormGarages
             // 
@@ -222,6 +221,6 @@
         private System.Windows.Forms.GroupBox groupBoxGarage;
         private System.Windows.Forms.TextBox textBoxGarageName;
         private System.Windows.Forms.MenuStrip menuStripGarages;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFile;
+        private System.Windows.Forms.ToolStripMenuItem menuItemFile;
     }
 }

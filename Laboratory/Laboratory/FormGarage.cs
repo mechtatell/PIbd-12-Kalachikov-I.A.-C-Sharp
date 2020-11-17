@@ -15,8 +15,8 @@ namespace Laboratory
 
             ToolStripMenuItem saveFileMenuItem = new ToolStripMenuItem("Сохранить");
             ToolStripMenuItem loadFileMenuItem = new ToolStripMenuItem("Загрузить");
-            toolStripMenuItemFile.DropDownItems.Add(saveFileMenuItem);
-            toolStripMenuItemFile.DropDownItems.Add(loadFileMenuItem);
+            menuItemFile.DropDownItems.Add(saveFileMenuItem);
+            menuItemFile.DropDownItems.Add(loadFileMenuItem);
             saveFileMenuItem.Click += saveFileMenuItem_Click;
             loadFileMenuItem.Click += loadFileMenuItem_Click;
             Render();
