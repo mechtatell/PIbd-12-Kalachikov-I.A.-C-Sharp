@@ -84,6 +84,8 @@
             // checkBoxHasSiren
             // 
             this.checkBoxHasSiren.AutoSize = true;
+            this.checkBoxHasSiren.Checked = true;
+            this.checkBoxHasSiren.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxHasSiren.Location = new System.Drawing.Point(120, 23);
             this.checkBoxHasSiren.Name = "checkBoxHasSiren";
             this.checkBoxHasSiren.Size = new System.Drawing.Size(67, 19);
@@ -94,6 +96,8 @@
             // checkBoxHasTank
             // 
             this.checkBoxHasTank.AutoSize = true;
+            this.checkBoxHasTank.Checked = true;
+            this.checkBoxHasTank.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxHasTank.Location = new System.Drawing.Point(120, 83);
             this.checkBoxHasTank.Name = "checkBoxHasTank";
             this.checkBoxHasTank.Size = new System.Drawing.Size(45, 19);
@@ -104,6 +108,8 @@
             // checkBoxHasBumper
             // 
             this.checkBoxHasBumper.AutoSize = true;
+            this.checkBoxHasBumper.Checked = true;
+            this.checkBoxHasBumper.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxHasBumper.Location = new System.Drawing.Point(120, 63);
             this.checkBoxHasBumper.Name = "checkBoxHasBumper";
             this.checkBoxHasBumper.Size = new System.Drawing.Size(68, 19);
@@ -114,6 +120,8 @@
             // checkBoxHasStrip
             // 
             this.checkBoxHasStrip.AutoSize = true;
+            this.checkBoxHasStrip.Checked = true;
+            this.checkBoxHasStrip.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxHasStrip.Cursor = System.Windows.Forms.Cursors.Default;
             this.checkBoxHasStrip.Location = new System.Drawing.Point(120, 43);
             this.checkBoxHasStrip.Name = "checkBoxHasStrip";
@@ -152,16 +160,11 @@
             0,
             0,
             0});
-            this.numericUpDownMaxSpeed.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numericUpDownMaxSpeed.Name = "numericUpDownMaxSpeed";
             this.numericUpDownMaxSpeed.Size = new System.Drawing.Size(92, 23);
             this.numericUpDownMaxSpeed.TabIndex = 1;
             this.numericUpDownMaxSpeed.Value = new decimal(new int[] {
-            10,
+            60,
             0,
             0,
             0});
