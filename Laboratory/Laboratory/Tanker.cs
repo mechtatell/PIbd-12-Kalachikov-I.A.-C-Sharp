@@ -68,5 +68,10 @@ namespace Laboratory
                 g.FillRectangle(new SolidBrush(Color.SlateGray), posX + 185, posY + 28, 15, 45);
             }
         }
+
+        public void SetOtherColor(Color color)
+        {
+            OtherColor = color;
+        }
     }
 }

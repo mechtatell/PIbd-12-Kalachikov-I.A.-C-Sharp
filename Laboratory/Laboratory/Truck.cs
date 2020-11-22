@@ -2,7 +2,7 @@
 
 namespace Laboratory
 {
-    class Truck : Vehicle
+    public class Truck : Vehicle
     {
         protected readonly int truckWidth = 200;
         protected readonly int truckHeight = 100;
