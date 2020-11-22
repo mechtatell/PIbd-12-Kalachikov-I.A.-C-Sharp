@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace Laboratory
 {
@@ -6,12 +7,24 @@ namespace Laboratory
     {
         protected readonly int truckWidth = 200;
         protected readonly int truckHeight = 100;
+        protected readonly char separator = ';';
 
         public Truck(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
+        }
+
+        public Truck(string info)
+        {
+            string[] args = info.Split(separator);
+            if (args.Length == 3)
+            {
+                MaxSpeed = Convert.ToInt32(args[0]);
+                Weight = Convert.ToInt32(args[1]);
+                MainColor = Color.FromName(args[2]);
+            }
         }
 
         protected Truck(int maxSpeed, float weight, Color mainColor, int truckWidth, int truckHeight)
@@ -72,6 +85,11 @@ namespace Laboratory
                     }
                     break;
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
         }
     }
 }

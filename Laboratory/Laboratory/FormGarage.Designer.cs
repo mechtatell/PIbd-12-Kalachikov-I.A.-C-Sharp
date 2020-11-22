@@ -40,23 +40,26 @@
             this.buttonRemoveGarage = new System.Windows.Forms.Button();
             this.groupBoxGarage = new System.Windows.Forms.GroupBox();
             this.textBoxGarageName = new System.Windows.Forms.TextBox();
+            this.menuStripGarages = new System.Windows.Forms.MenuStrip();
+            this.menuItemFile = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarage)).BeginInit();
             this.groupBoxTake.SuspendLayout();
             this.groupBoxGarage.SuspendLayout();
+            this.menuStripGarages.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBoxGarage
             // 
             this.pictureBoxGarage.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBoxGarage.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxGarage.Location = new System.Drawing.Point(0, 24);
             this.pictureBoxGarage.Name = "pictureBoxGarage";
-            this.pictureBoxGarage.Size = new System.Drawing.Size(648, 450);
+            this.pictureBoxGarage.Size = new System.Drawing.Size(648, 470);
             this.pictureBoxGarage.TabIndex = 0;
             this.pictureBoxGarage.TabStop = false;
             // 
             // buttonCreateTruck
             // 
-            this.buttonCreateTruck.Location = new System.Drawing.Point(668, 12);
+            this.buttonCreateTruck.Location = new System.Drawing.Point(668, 41);
             this.buttonCreateTruck.Name = "buttonCreateTruck";
             this.buttonCreateTruck.Size = new System.Drawing.Size(120, 42);
             this.buttonCreateTruck.TabIndex = 1;
@@ -69,7 +72,7 @@
             this.groupBoxTake.Controls.Add(this.buttonTake);
             this.groupBoxTake.Controls.Add(this.maskedTextBoxPlace);
             this.groupBoxTake.Controls.Add(this.labelPlace);
-            this.groupBoxTake.Location = new System.Drawing.Point(668, 70);
+            this.groupBoxTake.Location = new System.Drawing.Point(668, 101);
             this.groupBoxTake.Name = "groupBoxTake";
             this.groupBoxTake.Size = new System.Drawing.Size(120, 100);
             this.groupBoxTake.TabIndex = 2;
@@ -149,7 +152,7 @@
             this.groupBoxGarage.Controls.Add(this.buttonRemoveGarage);
             this.groupBoxGarage.Controls.Add(this.buttonAddGarage);
             this.groupBoxGarage.Controls.Add(this.listBoxGarages);
-            this.groupBoxGarage.Location = new System.Drawing.Point(668, 190);
+            this.groupBoxGarage.Location = new System.Drawing.Point(668, 221);
             this.groupBoxGarage.Name = "groupBoxGarage";
             this.groupBoxGarage.Size = new System.Drawing.Size(120, 255);
             this.groupBoxGarage.TabIndex = 4;
@@ -163,15 +166,32 @@
             this.textBoxGarageName.Size = new System.Drawing.Size(108, 23);
             this.textBoxGarageName.TabIndex = 4;
             // 
+            // menuStripGarages
+            // 
+            this.menuStripGarages.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemFile});
+            this.menuStripGarages.Location = new System.Drawing.Point(0, 0);
+            this.menuStripGarages.Name = "menuStripGarages";
+            this.menuStripGarages.Size = new System.Drawing.Size(800, 24);
+            this.menuStripGarages.TabIndex = 5;
+            // 
+            // menuItemFile
+            // 
+            this.menuItemFile.Name = "menuItemFile";
+            this.menuItemFile.Size = new System.Drawing.Size(48, 20);
+            this.menuItemFile.Text = "Файл";
+            // 
             // FormGarages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 494);
             this.Controls.Add(this.groupBoxGarage);
             this.Controls.Add(this.groupBoxTake);
             this.Controls.Add(this.buttonCreateTruck);
             this.Controls.Add(this.pictureBoxGarage);
+            this.Controls.Add(this.menuStripGarages);
+            this.MainMenuStrip = this.menuStripGarages;
             this.Name = "FormGarages";
             this.Text = "Форма с гаражами";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGarage)).EndInit();
@@ -179,7 +199,10 @@
             this.groupBoxTake.PerformLayout();
             this.groupBoxGarage.ResumeLayout(false);
             this.groupBoxGarage.PerformLayout();
+            this.menuStripGarages.ResumeLayout(false);
+            this.menuStripGarages.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -197,5 +220,7 @@
         private System.Windows.Forms.Button buttonRemoveGarage;
         private System.Windows.Forms.GroupBox groupBoxGarage;
         private System.Windows.Forms.TextBox textBoxGarageName;
+        private System.Windows.Forms.MenuStrip menuStripGarages;
+        private System.Windows.Forms.ToolStripMenuItem menuItemFile;
     }
 }

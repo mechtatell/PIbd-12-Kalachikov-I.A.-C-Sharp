@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Laboratory
@@ -8,6 +9,7 @@ namespace Laboratory
         private readonly Dictionary<string, Garage<Truck>> garageStages;
         private readonly int frameWidth;
         private readonly int frameHeight;
+        private readonly char separator = ':';
 
         public GarageCollection(int frameWidth, int frameHeight)
         {
@@ -36,7 +38,7 @@ namespace Laboratory
 
         public Garage<Truck> this[string name]
         {
-            get 
+            get
             {
                 if (garageStages.ContainsKey(name))
                 {
@@ -46,19 +48,80 @@ namespace Laboratory
             }
         }
 
-        /**
-         * Дополнительной задание при сдаче лабы
-         */
-        public Garage<Truck> this[int index]
+        public bool SaveData(string filename)
         {
-            get
+            using (StreamWriter streamWriter = new StreamWriter
+                (filename, false, System.Text.Encoding.Default))
             {
-                if (index >= 0 && index < garageStages.Count)
+                streamWriter.WriteLine("GarageCollection");
+                foreach (var level in garageStages)
                 {
-                    string name = Keys[index];
-                    return garageStages[name];
+                    streamWriter.WriteLine("Garage" + separator + level.Key);
+
+                    ITransport truck;
+                    for (int i = 0; (truck = level.Value.GetTruck(i)) != null; i++)
+                    {
+                        if (truck.GetType().Name == "Truck")
+                        {
+                            streamWriter.Write("Truck" + separator);
+                        }
+                        else if (truck.GetType().Name == "Tanker")
+                        {
+                            streamWriter.Write("Tanker" + separator);
+                        }
+                        streamWriter.WriteLine(truck);
+                    }
                 }
-                return null;
+                return true;
+            }
+        }
+
+        public bool LoadData(string filename)
+        {
+            if (!File.Exists(filename))
+            {
+                return false;
+            }
+
+            using (StreamReader streamReader = new StreamReader
+                (filename, System.Text.Encoding.Default))
+            {
+                if (streamReader.ReadLine().Contains("GarageCollection"))
+                {
+                    garageStages.Clear();
+                }
+                else
+                {
+                    return false;
+                }
+
+                Truck truck = null;
+                string key = string.Empty;
+                string line;
+                for (int i = 0; (line = streamReader.ReadLine()) != null; i++)
+                {
+                    if (line.Contains("Garage"))
+                    {
+                        key = line.Split(separator)[1];
+                        garageStages.Add(key, new Garage<Truck>(frameWidth, frameHeight));
+                    }
+                    else if (line.Contains(separator))
+                    {
+                        if (line.Contains("Truck"))
+                        {
+                            truck = new Truck(line.Split(separator)[1]);
+                        }
+                        else if (line.Contains("Tanker"))
+                        {
+                            truck = new Tanker(line.Split(separator)[1]);
+                        }
+                        if (!(garageStages[key] + truck))
+                        {
+                            return false;
+                        }
+                    }
+                }
+                return true;
             }
         }
     }
