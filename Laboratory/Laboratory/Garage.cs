@@ -24,23 +24,23 @@ namespace Laboratory
 
         public static bool operator +(Garage<T> garage, T truck)
         {
-            if (garage.places.Count < garage.maxCount)
+            if (garage.places.Count >= garage.maxCount)
             {
-                garage.places.Add(truck);
-                return true;
+                throw new GarageOverflowException();
             }
-            return false;
+            garage.places.Add(truck);
+            return true;
         }
 
         public static T operator -(Garage<T> garage, int index)
         {
-            if (index >= 0 && index < garage.maxCount && garage.places[index] != null)
+            if (index < 0 || index >= garage.places.Count)
             {
-                T truck = garage.places[index];
-                garage.places.RemoveAt(index);
-                return truck;
+                throw new GarageNotFoundException(index);
             }
-            return null;
+            T truck = garage.places[index];
+            garage.places.RemoveAt(index);
+            return truck;
         }
 
         public void Render(Graphics g)
