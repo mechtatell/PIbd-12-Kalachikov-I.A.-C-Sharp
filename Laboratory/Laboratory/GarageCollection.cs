@@ -48,7 +48,7 @@ namespace Laboratory
             }
         }
 
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             using (StreamWriter streamWriter = new StreamWriter
                 (filename, false, System.Text.Encoding.Default))
@@ -72,15 +72,14 @@ namespace Laboratory
                         streamWriter.WriteLine(truck);
                     }
                 }
-                return true;
             }
         }
 
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
 
             using (StreamReader streamReader = new StreamReader
@@ -92,9 +91,8 @@ namespace Laboratory
                 }
                 else
                 {
-                    return false;
+                    throw new FileLoadException("Неверный формат файла");
                 }
-
                 Truck truck = null;
                 string key = string.Empty;
                 string line;
@@ -117,11 +115,10 @@ namespace Laboratory
                         }
                         if (!(garageStages[key] + truck))
                         {
-                            return false;
+                            throw new GarageOverflowException();
                         }
                     }
                 }
-                return true;
             }
         }
     }

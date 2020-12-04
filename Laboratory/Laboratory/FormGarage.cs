@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using NLog;
+using System.IO;
 
 namespace Laboratory
 {
@@ -8,10 +10,13 @@ namespace Laboratory
     {
         private readonly GarageCollection garageCollection;
 
+        private readonly Logger logger;
+
         public FormGarages()
         {
             InitializeComponent();
             garageCollection = new GarageCollection(pictureBoxGarage.Width, pictureBoxGarage.Height);
+            logger = LogManager.GetCurrentClassLogger();
 
             ToolStripMenuItem saveFileMenuItem = new ToolStripMenuItem("Сохранить");
             ToolStripMenuItem loadFileMenuItem = new ToolStripMenuItem("Загрузить");
@@ -64,6 +69,7 @@ namespace Laboratory
                 garageCollection.AddGarage(textBoxGarageName.Text);
                 ReloadLevels();
                 Render();
+                logger.Info("Был добавлен гараж " + textBoxGarageName.Text);
             }
             else
             {
@@ -78,6 +84,7 @@ namespace Laboratory
                 if (MessageBox.Show($"Удалить гараж {listBoxGarages.SelectedItem}?", "Удаление",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    logger.Info("Быд удален гараж " + listBoxGarages.SelectedItem.ToString());
                     garageCollection.RemoveGarage(listBoxGarages.SelectedItem.ToString());
                     ReloadLevels();
                     Render();
@@ -105,47 +112,60 @@ namespace Laboratory
 
         private void AddTruck(Truck truck)
         {
-            if (truck != null)
+            try
             {
                 if (garageCollection[listBoxGarages.SelectedItem.ToString()] + truck)
                 {
                     Render();
+                    logger.Info("Добавили грузовик " + truck);
                 }
-                else
-                {
-                    MessageBox.Show("Гараж переполнен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            catch (GarageOverflowException ex)
+            {
+                MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Warn(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Warn(ex.Message);
             }
         }
 
         private void buttonTake_Click(object sender, EventArgs e)
         {
-            if (listBoxGarages.SelectedIndex >= 0)
-            {
-                if (maskedTextBoxPlace.Text != "")
-                {
-                    var truck = garageCollection[listBoxGarages.SelectedItem.ToString()] - Convert.ToInt32(maskedTextBoxPlace.Text);
-                    if (truck != null)
-                    {
-                        FormTruck formTransport = new FormTruck();
-                        formTransport.SetTruck(truck);
-                        Render();
-                        formTransport.ShowDialog();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Грузовика с таким индексом нет!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
+            if (listBoxGarages.SelectedItem == null)
             {
                 MessageBox.Show("Гараж не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try
+            {
+                var truck = garageCollection[listBoxGarages.SelectedItem.ToString()] - Convert.ToInt32(maskedTextBoxPlace.Text);
+                if (truck != null)
+                {
+                    FormTruck formTransport = new FormTruck();
+                    formTransport.SetTruck(truck);
+                    Render();
+                    formTransport.ShowDialog();
+                    logger.Info("Uрузовик " + truck + " был изъят с места " + maskedTextBoxPlace.Text);
+                }
+            }
+            catch (GarageNotFoundException ex)
+            {
+                MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Warn(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Warn(ex.Message);
             }
         }
 
         private void listBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            logger.Info("Перешли на гараж " + listBoxGarages.SelectedItem.ToString());
             Render();
         }
 
@@ -155,15 +175,16 @@ namespace Laboratory
             saveFileDialog.Filter = "txt file | *.txt";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (garageCollection.SaveData(saveFileDialog.FileName))
+                try
                 {
-                    MessageBox.Show("Сохранение прошло успешно", "Результат",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    garageCollection.SaveData(saveFileDialog.FileName);
+                    MessageBox.Show("Сохранение прошло успешно", "Результат", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    logger.Info("Сохранено в файл " + saveFileDialog.FileName);
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Не сохранилось", "Результат",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
                 }
             }
         }
@@ -174,17 +195,34 @@ namespace Laboratory
             openFileDialog.Filter = "txt file | *.txt";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (garageCollection.LoadData(openFileDialog.FileName))
+                try
                 {
+                    garageCollection.LoadData(openFileDialog.FileName);
                     MessageBox.Show("Загрузили", "Результат", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                     ReloadLevels();
                     Render();
+                    logger.Info("Загружено из файла " + openFileDialog.FileName);
                 }
-                else
+                catch (GarageOverflowException ex)
                 {
-                    MessageBox.Show("Не загрузили", "Результат", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
+                }
+                catch (FileNotFoundException ex)
+                {
+                    MessageBox.Show(ex.Message, "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
+                }
+                catch (FileLoadException ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка при загрузке", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при загрузке", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
                 }
             }
         }
