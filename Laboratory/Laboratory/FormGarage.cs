@@ -1,7 +1,8 @@
-﻿using NLog;
-using System;
+﻿using System;
+using NLog;
 using System.Drawing;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Laboratory
 {
@@ -15,6 +16,7 @@ namespace Laboratory
         {
             InitializeComponent();
             garageCollection = new GarageCollection(pictureBoxGarage.Width, pictureBoxGarage.Height);
+            logger = LogManager.GetCurrentClassLogger();
 
             ToolStripMenuItem saveFileMenuItem = new ToolStripMenuItem("Сохранить");
             ToolStripMenuItem loadFileMenuItem = new ToolStripMenuItem("Загрузить");
@@ -23,7 +25,6 @@ namespace Laboratory
             saveFileMenuItem.Click += saveFileMenuItem_Click;
             loadFileMenuItem.Click += loadFileMenuItem_Click;
 
-            logger = LogManager.GetCurrentClassLogger();
             Render();
         }
 
@@ -69,7 +70,7 @@ namespace Laboratory
                 garageCollection.AddGarage(textBoxGarageName.Text);
                 ReloadLevels();
                 Render();
-                logger.Info("Добавили гараж " + textBoxGarageName.Text);
+                logger.Info("Был добавлен гараж " + textBoxGarageName.Text);
             }
             else
             {
@@ -84,10 +85,10 @@ namespace Laboratory
                 if (MessageBox.Show($"Удалить гараж {listBoxGarages.SelectedItem}?", "Удаление",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    logger.Info("Удалили гараж " + listBoxGarages.SelectedItem.ToString());
+                    logger.Info("Быд удален гараж " + listBoxGarages.SelectedItem.ToString());
                     garageCollection.RemoveGarage(listBoxGarages.SelectedItem.ToString());
                     ReloadLevels();
-                    Render();              
+                    Render();
                 }
             }
             else
@@ -119,10 +120,6 @@ namespace Laboratory
                     Render();
                     logger.Info("Добавили грузовик " + truck);
                 }
-                else
-                {
-                    MessageBox.Show("Гараж переполнен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
             catch (GarageOverflowException ex)
             {
@@ -138,6 +135,11 @@ namespace Laboratory
 
         private void buttonTake_Click(object sender, EventArgs e)
         {
+            if (listBoxGarages.SelectedItem == null)
+            {
+                MessageBox.Show("Гараж не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 var truck = garageCollection[listBoxGarages.SelectedItem.ToString()] - Convert.ToInt32(maskedTextBoxPlace.Text);
@@ -147,12 +149,12 @@ namespace Laboratory
                     formTransport.SetTruck(truck);
                     Render();
                     formTransport.ShowDialog();
-                    logger.Info("Изъят грузовик " + truck + " с места " + maskedTextBoxPlace.Text);
+                    logger.Info("Uрузовик " + truck + " был изъят с места " + maskedTextBoxPlace.Text);
                 }
             }
             catch (GarageNotFoundException ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 logger.Warn(ex.Message);
             }
             catch (Exception ex)
@@ -206,6 +208,16 @@ namespace Laboratory
                 catch (GarageOverflowException ex)
                 {
                     MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
+                }
+                catch (FileNotFoundException ex)
+                {
+                    MessageBox.Show(ex.Message, "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
+                }
+                catch (FileLoadException ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка при загрузке", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Warn(ex.Message);
                 }
                 catch (Exception ex)
