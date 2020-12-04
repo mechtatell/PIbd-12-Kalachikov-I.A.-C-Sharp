@@ -1,7 +1,7 @@
 ﻿using System;
-using NLog;
 using System.Drawing;
 using System.Windows.Forms;
+using NLog;
 using System.IO;
 
 namespace Laboratory
@@ -24,7 +24,6 @@ namespace Laboratory
             menuItemFile.DropDownItems.Add(loadFileMenuItem);
             saveFileMenuItem.Click += saveFileMenuItem_Click;
             loadFileMenuItem.Click += loadFileMenuItem_Click;
-
             Render();
         }
 
