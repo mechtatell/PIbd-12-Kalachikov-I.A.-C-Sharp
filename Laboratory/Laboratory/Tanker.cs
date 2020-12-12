@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Laboratory
 {
-    class Tanker : Truck
+    class Tanker : Truck, IEquatable<Tanker>
     {
         public Color OtherColor { private set; get; }
         public bool HasSiren { private set; get; }
@@ -94,6 +94,64 @@ namespace Laboratory
         public override string ToString()
         {
             return $"{base.ToString()}{separator}{OtherColor.Name}{separator}{HasSiren}{separator}{HasStrip}{separator}{HasBumper}{ separator}{ HasTank}";
+        }
+
+        public bool Equals(Tanker other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            if (OtherColor != other.OtherColor)
+            {
+                return false;
+            }
+            if (HasSiren != other.HasSiren)
+            {
+                return false;
+            }
+            if (HasStrip != other.HasStrip)
+            {
+                return false;
+            }
+            if (HasBumper != other.HasBumper)
+            {
+                return false;
+            }
+            if (HasTank != other.HasTank)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(object obj)
+        { 
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Tanker tankerObject))
+            {
+                return false;
+            }
+            return Equals(tankerObject);
         }
     }
 }
