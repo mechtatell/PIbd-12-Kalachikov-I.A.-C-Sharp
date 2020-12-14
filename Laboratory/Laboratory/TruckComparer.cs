@@ -10,18 +10,15 @@ namespace Laboratory
             {
                 return first.GetType().Name.CompareTo(second.GetType().Name);
             }
-
-            int result;
-            switch (first.GetType().Name)
+            if (first is Truck && second is Truck)
             {
-                case "Truck":
-                    result = ComparerTruck(first as Truck, second as Truck);
-                    return result;
-                case "Tanker":
-                    result = ComparerTanker(first as Tanker, second as Tanker);
-                    return result;
+                return ComparerTruck(first as Truck, second as Truck);
             }
-            return 100;
+            if (first is Tanker && second is Tanker)
+            {
+                return ComparerTanker(first as Tanker, second as Tanker);
+            }
+            return 0;
         }
 
         private int ComparerTruck(Truck first, Truck second)
