@@ -1,8 +1,8 @@
-﻿using NLog;
-using System;
+﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
+using NLog;
+using System.IO;
 
 namespace Laboratory
 {
