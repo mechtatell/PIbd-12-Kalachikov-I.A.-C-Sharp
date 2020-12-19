@@ -45,7 +45,6 @@ namespace Laboratory
             {
                 return result;
             }
-
             if (first.OtherColor != second.OtherColor)
             {
                 return first.OtherColor.Name.CompareTo(second.OtherColor.Name);
