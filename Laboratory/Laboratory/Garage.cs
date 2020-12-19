@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Collections;
 using System.Drawing;
 
 namespace Laboratory
 {
-    class Garage<T> where T : class, ITransport
+    class Garage<T> : IEnumerator<T>, IEnumerable<T>
+        where T : class, ITransport
     {
         private readonly List<T> places;
         private readonly int maxCount;
@@ -11,6 +13,12 @@ namespace Laboratory
         private readonly int placeHeight = 140;
         private readonly int frameWidth;
         private readonly int frameHeight;
+
+        private int currentIndex;
+
+        public T Current => places[currentIndex];
+
+        object IEnumerator.Current => places[currentIndex];
 
         public Garage(int frameWidth, int frameHeight)
         {
@@ -20,6 +28,7 @@ namespace Laboratory
             int rowsCount = frameHeight / placeHeight;
             maxCount = columnsCount * rowsCount;
             places = new List<T>();
+            currentIndex = -1;
         }
 
         public static bool operator +(Garage<T> garage, T truck)
@@ -27,6 +36,10 @@ namespace Laboratory
             if (garage.places.Count >= garage.maxCount)
             {
                 throw new GarageOverflowException();
+            }
+            if (garage.places.Contains(truck))
+            {
+                throw new GarageAlreadyHaveException();
             }
             garage.places.Add(truck);
             return true;
@@ -87,6 +100,33 @@ namespace Laboratory
                 return places[index];
             }
             return null;
+        }
+
+        public void Sort() => places.Sort((IComparer<T>)new TruckComparer());
+
+        public bool MoveNext()
+        {
+            currentIndex++;
+            return currentIndex < places.Count;
+        }
+
+        public void Reset()
+        {
+            currentIndex = -1;
+        }
+
+        public void Dispose()
+        {
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
         }
     }
 }

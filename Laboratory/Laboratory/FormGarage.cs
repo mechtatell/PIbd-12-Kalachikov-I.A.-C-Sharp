@@ -125,6 +125,11 @@ namespace Laboratory
                 MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 logger.Warn(ex.Message);
             }
+            catch (GarageAlreadyHaveException ex)
+            {
+                MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Warn(ex.Message);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -209,6 +214,11 @@ namespace Laboratory
                     MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Warn(ex.Message);
                 }
+                catch (GarageAlreadyHaveException ex)
+                {
+                    MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
+                }
                 catch (FileNotFoundException ex)
                 {
                     MessageBox.Show(ex.Message, "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -225,6 +235,18 @@ namespace Laboratory
                     logger.Warn(ex.Message);
                 }
             }
+        }
+
+        private void buttonSort_Click(object sender, EventArgs e)
+        {
+            if (listBoxGarages.SelectedItem == null)
+            {
+                MessageBox.Show("Гараж не выбран", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            garageCollection[listBoxGarages.SelectedItem.ToString()].Sort();
+            Render();
+            logger.Info("Грузовики в гараже " + listBoxGarages.SelectedItem.ToString() + " отсортированы");
         }
     }
 }

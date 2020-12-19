@@ -6,14 +6,14 @@ namespace Laboratory
 {
     class GarageCollection
     {
-        private readonly Dictionary<string, Garage<Truck>> garageStages;
+        private readonly Dictionary<string, Garage<Vehicle>> garageStages;
         private readonly int frameWidth;
         private readonly int frameHeight;
         private readonly char separator = ':';
 
         public GarageCollection(int frameWidth, int frameHeight)
         {
-            garageStages = new Dictionary<string, Garage<Truck>>();
+            garageStages = new Dictionary<string, Garage<Vehicle>>();
             this.frameWidth = frameWidth;
             this.frameHeight = frameHeight;
         }
@@ -24,7 +24,7 @@ namespace Laboratory
         {
             if (!garageStages.ContainsKey(name))
             {
-                garageStages.Add(name, new Garage<Truck>(frameWidth, frameHeight));
+                garageStages.Add(name, new Garage<Vehicle>(frameWidth, frameHeight));
             }
         }
 
@@ -36,7 +36,7 @@ namespace Laboratory
             }
         }
 
-        public Garage<Truck> this[string name]
+        public Garage<Vehicle> this[string name]
         {
             get
             {
@@ -58,8 +58,7 @@ namespace Laboratory
                 {
                     streamWriter.WriteLine("Garage" + separator + level.Key);
 
-                    ITransport truck;
-                    for (int i = 0; (truck = level.Value.GetTruck(i)) != null; i++)
+                    foreach (Truck truck in level.Value)
                     {
                         if (truck.GetType().Name == "Truck")
                         {
@@ -101,7 +100,7 @@ namespace Laboratory
                     if (line.Contains("Garage"))
                     {
                         key = line.Split(separator)[1];
-                        garageStages.Add(key, new Garage<Truck>(frameWidth, frameHeight));
+                        garageStages.Add(key, new Garage<Vehicle>(frameWidth, frameHeight));
                     }
                     else if (line.Contains(separator))
                     {

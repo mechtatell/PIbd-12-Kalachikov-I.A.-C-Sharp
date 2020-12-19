@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Laboratory
 {
-    public class Truck : Vehicle
+    public class Truck : Vehicle, IEquatable<Truck>
     {
         protected readonly int truckWidth = 200;
         protected readonly int truckHeight = 100;
@@ -90,6 +90,44 @@ namespace Laboratory
         public override string ToString()
         {
             return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
+        }
+
+        public bool Equals(Truck other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Truck truckObject))
+            {
+                return false;
+            }
+            return Equals(truckObject);
         }
     }
 }
