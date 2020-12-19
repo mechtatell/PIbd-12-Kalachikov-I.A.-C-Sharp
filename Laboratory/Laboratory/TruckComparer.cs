@@ -50,10 +50,6 @@ namespace Laboratory
             {
                 return first.OtherColor.Name.CompareTo(second.OtherColor.Name);
             }
-            if (first.OtherColor != second.OtherColor)
-            {
-                return first.OtherColor.Name.CompareTo(second.OtherColor.Name);
-            }
             if (first.HasSiren != second.HasSiren)
             {
                 return first.HasSiren.CompareTo(second.HasSiren);

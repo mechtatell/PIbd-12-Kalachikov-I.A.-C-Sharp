@@ -214,6 +214,11 @@ namespace Laboratory
                     MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     logger.Warn(ex.Message);
                 }
+                catch (GarageAlreadyHaveException ex)
+                {
+                    MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Warn(ex.Message);
+                }
                 catch (FileNotFoundException ex)
                 {
                     MessageBox.Show(ex.Message, "Файл не найден", MessageBoxButtons.OK, MessageBoxIcon.Error);
